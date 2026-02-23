@@ -42,8 +42,8 @@ jobs:
         run: |
           docker build \
             --build-arg REACT_APP_ENVIRONMENT=${{ env.REACT_APP_ENVIRONMENT }} \
-            -t ${{ secrets.DOCKERHUB_USERNAME }}/react-env-app:${{ env.ENVIRONMENT }}-${{ env.SHORT_SHA }} \
+            -t ayshachauhan54/react-env-app:${{ env.ENVIRONMENT }}-${{ env.SHORT_SHA }} \
             .
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/react-env-app:${{env.ENVIRONMENT }}-${{ env.SHORT_SHA }}
+          docker push ayshachauhan54/react-env-app:${{env.ENVIRONMENT }}-${{ env.SHORT_SHA }}
