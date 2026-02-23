@@ -60,6 +60,26 @@ react-env-app/
 
 ---
 
+## 🍴 Getting Started
+
+1. **Fork** this repository to your own GitHub account
+2. **Clone** your forked repo locally:
+   ```bash
+   git clone https://github.com/<your-username>/react-env-app.git
+   cd react-env-app
+   ```
+3. **Create** the required branches in your fork:
+   ```bash
+   git checkout -b develop
+   git push origin develop
+   git checkout -b staging
+   git push origin staging
+   ```
+4. **Create GitHub Environments** in your fork: go to **Settings > Environments** and create `development`, `staging`, and `production` environments, each with `DOCKER_USERNAME` and `DOCKER_PASSWORD` secrets
+5. Start working on the tasks below
+
+---
+
 ## 📝 Tasks
 
 ### Task 1 — Dockerfile
@@ -102,14 +122,28 @@ Create a **single workflow file** (`.github/workflows/ci.yml`) that does the fol
 
 ---
 
-### Task 3 — GitHub Secrets
+### Task 3 — GitHub Environments & Secrets
 
-Configure the following secrets in your GitHub repository:
+Create **three GitHub Environments** in your repository and configure secrets for each.
+
+Go to **Settings > Environments** and create:
+
+| Environment Name | Used by Branch |
+|------------------|----------------|
+| `development`    | `develop`      |
+| `staging`        | `staging`      |
+| `production`     | `main`         |
+
+Add the following secrets **inside each environment**:
 
 | Secret Name         | Description                |
 |---------------------|----------------------------|
 | `DOCKER_USERNAME`   | Your Docker Hub username   |
 | `DOCKER_PASSWORD`   | Your Docker Hub password or access token |
+
+Your workflow should reference the correct environment based on the branch so that the secrets are pulled from the matching environment.
+
+> **Note:** This mimics real-world setups where each environment may have different credentials (e.g. separate Docker Hub accounts or registries for dev, staging, and prod).
 
 ---
 
@@ -117,7 +151,7 @@ Configure the following secrets in your GitHub repository:
 
 - [ ] A working `Dockerfile` in the project root
 - [ ] A single workflow file at `.github/workflows/ci.yml`
-- [ ] Docker Hub secrets configured in the repo
+- [ ] Three GitHub Environments (`development`, `staging`, `production`) created with Docker Hub secrets configured in each
 - [ ] Successful pipeline runs on all three branches with correctly tagged images on Docker Hub
 
 ---
